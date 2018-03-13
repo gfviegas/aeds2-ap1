@@ -15,49 +15,31 @@ int initNode(nodePointer* node) {
     return 0;
 }
 
-int addNode(nodePointer* node, float nota, char* nome, int matricula) {
-    if ((*node) == NULL) {
-        (*node) = (nodePointer) malloc(sizeof(node));
-        inicializaAluno(&(*node)->aluno, nota, nome, matricula);
-        (*node)->right = NULL;
-        (*node)->left = NULL;
-        //initNode(&(*node)->left);
-        //initNode(&(*node)->right);
+int addNode(nodePointer* no, Aluno aluno) {
+    if ((*no) == NULL) {
+        (*no) = (nodePointer) malloc(sizeof(node));
+        (*no)->aluno = aluno;
+        (*no)->right = NULL;
+        (*no)->left = NULL;
     }
-    else if (nota <= (*node)->aluno.nota) addNode(&(*node)->left, nota, nome, matricula);
-    else if (nota > (*node)->aluno.nota) addNode(&(*node)->right, nota, nome, matricula);
-    
-    /*if (nota > (*node)->aluno.nota) addNode(&(*node)->right, nota, nome, matricula);
-    else addNode(&(*node)->left, nota, nome, matricula);
-     */
+    else if (aluno.nota <= (*no)->aluno.nota) addNode(&(*no)->left, aluno);
+    else if (aluno.nota > (*no)->aluno.nota) addNode(&(*no)->right, aluno);
     
     return 1;
 }
 
-void printNode(nodePointer* node) {
-    printf("Aluno %s: \t Matrícula: %d \t - Nota: %.2f \n", (*node)->aluno.nome, (*node)->aluno.matricula, (*node)->aluno.nota);
+void printNode(nodePointer node) {
+    printf("Aluno: %s \t Matrícula: %d \t - Nota: %.2f \n", node->aluno.nome, node->aluno.matricula, node->aluno.nota);
 }
 
-int descOrderWalk(nodePointer* node) {
-    if ((node) == NULL || (*node) == NULL) return 1;
+int descOrderWalk(nodePointer node) {
+    if (node == NULL) return 1;
     
-    descOrderWalk(&(*node)->right);
+    descOrderWalk(node->right);
     printNode(node);
-    descOrderWalk(&(*node)->left);
+    descOrderWalk(node->left);
     
     return 0;
-}
-
-void preorderWalk(nodePointer* node) {
-    printNode(node);
-    if ((*node)->left != NULL) preorderWalk(&(*node)->left);
-    if ((*node)->right != NULL) preorderWalk(&(*node)->right);
-}
-
-void postorderWalk(nodePointer* node) {
-    if ((*node)->left != NULL) postorderWalk(&(*node)->left);
-    if ((*node)->right != NULL) postorderWalk(&(*node)->right);
-    printNode(node);
 }
 
 int treeSize(nodePointer* node) {

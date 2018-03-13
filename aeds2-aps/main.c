@@ -10,32 +10,17 @@
 #include <stdlib.h>
 #include "node.h"
 
-void printLine() {
-    int i;
-    printf("\n");
-    for (i = 0; i < 80; i++) {
-        printf("*");
-    }
-
-    printf("\n");
-}
+void printLine();
+void readFile(char *file, nodePointer *no);
 
 int main() {
-    node *root = (nodePointer) malloc(sizeof(node));
-    initNode(&root);
-    addNode(&root, 15.3, "Heitor Passeado", 3055);
-    addNode(&root, 14.3, "Gustavo Viegas", 3026);
-    addNode(&root, 17.9, "Bruno Marra", 3029);
-    addNode(&root, 3.0, "Fulano", 3023);
-    // addNode(&root, 20.0, "Henrique Deus", 3020);
-    addNode(&root, 0.1, "Elite", 3022);
-    addNode(&root, 19.0, "Glaucia", 3023);
-    addNode(&root, 1.0, "Altasbirra", 3023);
-
+    node *root = NULL;
+    initNode(&root);    
+    readFile("./files/alunos", &root);
 
     printLine();
     printf("DescOrder Walking!\n");
-    descOrderWalk(&root);
+    descOrderWalk(root);
     
     printLine();
     printf("Quantidade de Alunos: %d!\n", treeSize(&root));
@@ -53,4 +38,30 @@ int main() {
     
     printLine();
     return 0;
+}
+
+void printLine() {
+    int i;
+    printf("\n");
+    for (i = 0; i < 80; i++) {
+        printf("*");
+    }
+
+    printf("\n");
+}
+
+void readFile(char *file, nodePointer* no){
+    FILE *fp;
+    fp = fopen(file, "r");
+
+    if(fp != NULL){
+        while(1){
+            Aluno aluno;
+            fscanf(fp, "%d - %s - %f", &aluno.matricula, aluno.nome, &aluno.nota);
+            if(fgetc(fp) == EOF)
+                break;
+            addNode(no, aluno);
+        }
+        fclose(fp);
+    }
 }

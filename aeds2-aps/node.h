@@ -20,11 +20,9 @@ typedef struct node {
 } node;
 
 int initNode(nodePointer* node);
-int addNode(nodePointer* node, float nota, char* nome, int matricula);
-void printNode(nodePointer* node);
-int descOrderWalk(nodePointer* node);
-void preorderWalk(nodePointer* node);
-void postorderWalk(nodePointer* node);
+int addNode(nodePointer* node, Aluno aluno);
+void printNode(nodePointer node);
+int descOrderWalk(nodePointer node);
 
 int treeSize(nodePointer* node);
 int treeHeight(nodePointer* node);
