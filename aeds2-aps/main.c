@@ -20,32 +20,35 @@ void printLine() {
 }
 
 int main(int argc, const char * argv[]) {
-    node *root = NULL;
-    addNode(&root, 4);
+    nodePointer root = NULL;
+    addNode(&root, 15.3, "Heitor Passeado", 3055);
+    addNode(&root, 14.3, "Gustavo Viegas", 3026);
+    addNode(&root, 17.9, "Bruno Marra", 3029);
+    addNode(&root, 3.0, "Fulano", 3023);
+    addNode(&root, 20.0, "Henrique Deus", 3020);
+    addNode(&root, 0.1, "Elite", 3022);
+    addNode(&root, 19.0, "Glaucia", 3023);
+    addNode(&root, 1.0, "Altasbirra", 3023);
 
-    addNode(&root, 2);
-    addNode(&root, 6);
-    addNode(&root, 1);
-    addNode(&root, 3);
-    addNode(&root, 5);
-    addNode(&root, 7);
+
+    printLine();
+    printf("DescOrder Walking!\n");
+    descOrderWalk(&root);
     
     printLine();
-    printf("Order Walking!\n");
-    orderWalk(&root);
+    printf("Quantidade de Alunos: %d!\n", treeSize(&root));
     
     printLine();
-    printf("Preorder Walking!\n");
-    preorderWalk(&root);
+    Aluno burro = menorNota(&root);
+    printf("Menor nota: %.2f do aluno %s!\n", burro.nota, burro.nome);
+
+    printLine();
+    Aluno monstro = maiorNota(&root);
+    printf("Maior nota: %.2f do aluno %s!\n", monstro.nota, monstro.nome);
     
     printLine();
-    printf("Postorder Walking!\n");
-    postorderWalk(&root);
+    printf("Quantidade de alunos com média: %d!\n", alunosComMedia(&root));
     
     printLine();
-    printf("Tree size: %d\n", treeSize(&root));
-    
-    printLine();
-    printf("Tree height: %d\n", treeHeight(&root));
     return 0;
 }

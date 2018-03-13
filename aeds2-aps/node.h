@@ -10,22 +10,28 @@
 #define node_h
 
 #include <stdio.h>
+#include "aluno.h"
 
 typedef struct node* nodePointer;
 typedef struct node {
-    int value;
+    Aluno aluno;
     nodePointer left;
     nodePointer right;
 } node;
 
 int initNode(nodePointer* node);
-int addNode(nodePointer* node, int value);
+int addNode(nodePointer* node, float nota, char* nome, int matricula);
 void printNode(nodePointer* node);
-void orderWalk(nodePointer* node);
+int descOrderWalk(nodePointer* node);
 void preorderWalk(nodePointer* node);
 void postorderWalk(nodePointer* node);
 
 int treeSize(nodePointer* node);
 int treeHeight(nodePointer* node);
+
+Aluno menorNota(nodePointer* node);
+Aluno maiorNota(nodePointer* node);
+
+int alunosComMedia(nodePointer* node);
 
 #endif /* node_h */

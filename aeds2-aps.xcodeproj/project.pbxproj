@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EC17831F205803AD0097907D /* aluno.c in Sources */ = {isa = PBXBuildFile; fileRef = EC17831E205803AD0097907D /* aluno.c */; };
 		EC587951204EF58B006C2A36 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = EC587950204EF58B006C2A36 /* main.c */; };
 		EC587959204EF5C9006C2A36 /* node.c in Sources */ = {isa = PBXBuildFile; fileRef = EC587958204EF5C9006C2A36 /* node.c */; };
 /* End PBXBuildFile section */
@@ -24,6 +25,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		EC17831D205803AD0097907D /* aluno.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = aluno.h; sourceTree = "<group>"; };
+		EC17831E205803AD0097907D /* aluno.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = aluno.c; sourceTree = "<group>"; };
 		EC58794D204EF58B006C2A36 /* aeds2-aps */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "aeds2-aps"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC587950204EF58B006C2A36 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 		EC587957204EF5C9006C2A36 /* node.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = node.h; sourceTree = "<group>"; };
@@ -63,6 +66,8 @@
 				EC587950204EF58B006C2A36 /* main.c */,
 				EC587957204EF5C9006C2A36 /* node.h */,
 				EC587958204EF5C9006C2A36 /* node.c */,
+				EC17831D205803AD0097907D /* aluno.h */,
+				EC17831E205803AD0097907D /* aluno.c */,
 			);
 			path = "aeds2-aps";
 			sourceTree = "<group>";
@@ -124,6 +129,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EC17831F205803AD0097907D /* aluno.c in Sources */,
 				EC587951204EF58B006C2A36 /* main.c in Sources */,
 				EC587959204EF5C9006C2A36 /* node.c in Sources */,
 			);
