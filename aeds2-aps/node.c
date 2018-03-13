@@ -18,12 +18,13 @@ int initNode(nodePointer* node) {
 int addNode(nodePointer* node, float nota, char* nome, int matricula) {
     if ((*node) == NULL) {
         (*node) = (nodePointer) malloc(sizeof(node));
-        (*node)->left = NULL;
+        inicializaAluno(&(*node)->aluno, nota, nome, matricula);
         (*node)->right = NULL;
+        (*node)->left = NULL;
         //initNode(&(*node)->left);
         //initNode(&(*node)->right);
-        inicializaAluno(&(*node)->aluno, nota, nome, matricula);
-    } else if (nota <= (*node)->aluno.nota) addNode(&(*node)->left, nota, nome, matricula);
+    }
+    else if (nota <= (*node)->aluno.nota) addNode(&(*node)->left, nota, nome, matricula);
     else if (nota > (*node)->aluno.nota) addNode(&(*node)->right, nota, nome, matricula);
     
     /*if (nota > (*node)->aluno.nota) addNode(&(*node)->right, nota, nome, matricula);
@@ -38,7 +39,7 @@ void printNode(nodePointer* node) {
 }
 
 int descOrderWalk(nodePointer* node) {
-    if ((*node) == NULL) return 1;
+    if ((node) == NULL || (*node) == NULL) return 1;
     
     descOrderWalk(&(*node)->right);
     printNode(node);

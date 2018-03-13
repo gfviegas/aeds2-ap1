@@ -7,6 +7,7 @@
 //
 
 #include <stdio.h>
+#include <stdlib.h>
 #include "node.h"
 
 void printLine() {
@@ -19,13 +20,14 @@ void printLine() {
     printf("\n");
 }
 
-int main(int argc, const char * argv[]) {
-    nodePointer root = NULL;
+int main() {
+    node *root = (nodePointer) malloc(sizeof(node));
+    initNode(&root);
     addNode(&root, 15.3, "Heitor Passeado", 3055);
     addNode(&root, 14.3, "Gustavo Viegas", 3026);
     addNode(&root, 17.9, "Bruno Marra", 3029);
     addNode(&root, 3.0, "Fulano", 3023);
-    addNode(&root, 20.0, "Henrique Deus", 3020);
+    // addNode(&root, 20.0, "Henrique Deus", 3020);
     addNode(&root, 0.1, "Elite", 3022);
     addNode(&root, 19.0, "Glaucia", 3023);
     addNode(&root, 1.0, "Altasbirra", 3023);
