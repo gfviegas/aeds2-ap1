@@ -1,0 +1,16 @@
+3035 - Absinto - 15.6
+3010 - Alan - 1.2
+3029 - Bruno - 12.8
+3231 - Fabricio - 9.5
+3229 - Glaucia - 19.5
+3055 - Heitor - 17.4
+3040 - Henrique - 20.0
+3019 - Lucas - 15.2
+3001 - Nacif - 11.2
+3032 - Pascal - 0.1
+3032 - Thais - 15.3
+3199 - Turing - 19.8
+3026 - Viegas - 13.4
+3041 - ViniDeus - 18.4
+3033 - Vitor - 19.1
+3034 - Zumba - 5.2

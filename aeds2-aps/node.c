@@ -1,37 +1,33 @@
-//
-//  node.c
-//  aeds2-aps
-//
-//  Created by Gustavo Viegas on 06/03/18.
-//  Copyright © 2018 Gustavo Viegas. All rights reserved.
-//
 
 #include <stdlib.h>
 #include "node.h"
-#include "aluno.h"
+#include "alumn.h"
 
-int initNode(nodePointer* node) {
+// Inicializa os valores de um nó, atribuindo o seu valor do ponteiro para null
+void initNode(nodePointer* node) {
     *node = NULL;
-    return 0;
 }
 
-int addNode(nodePointer* no, Aluno aluno) {
-    if ((*no) == NULL) {
-        (*no) = (nodePointer) malloc(sizeof(node));
-        (*no)->aluno = aluno;
-        (*no)->right = NULL;
-        (*no)->left = NULL;
+// Adiciona um novo nó na árvore, alocando-o na posição correta ordenada por nota do aluno
+int addNode(nodePointer* node, int registration, char* name, float grade) {
+    if ((*node) == NULL) {
+        (*node) = (nodePointer) malloc(sizeof(Node));
+        initAlumn(&(*node)->alumn, registration, name, grade);
+        initNode(&(*node)->right);
+        initNode(&(*node)->left);
     }
-    else if (aluno.nota <= (*no)->aluno.nota) addNode(&(*no)->left, aluno);
-    else if (aluno.nota > (*no)->aluno.nota) addNode(&(*no)->right, aluno);
+    else if (grade <= (*node)->alumn.grade) addNode(&(*node)->left, registration, name, grade);
+    else if (grade > (*node)->alumn.grade) addNode(&(*node)->right, registration, name, grade);
     
     return 1;
 }
 
+// Imprime os dados de um nó
 void printNode(nodePointer node) {
-    printf("Aluno: %s \t Matrícula: %d \t - Nota: %.2f \n", node->aluno.nome, node->aluno.matricula, node->aluno.nota);
+    printf("Aluno: %15s \t | Matrícula: %5d \t | Nota: %.2f \n", node->alumn.name, node->alumn.registration, node->alumn.grade);
 }
 
+// Percorre a árvore imprimindo seus valores de forma ordenada decrescente pela nota
 int descOrderWalk(nodePointer node) {
     if (node == NULL) return 1;
     
@@ -42,38 +38,31 @@ int descOrderWalk(nodePointer node) {
     return 0;
 }
 
+// Conta a quantidade de alunos/nós que a árvore possui
 int treeSize(nodePointer* node) {
     if (*node == NULL) return 0;
     return 1 + treeSize(&(*node)->left) + treeSize(&(*node)->right);
 }
 
-int treeHeight(nodePointer* node) {
-    int leftSizeHeight, rightSizeHeight, tallerSize;
-    if (*node == NULL) return 0;
-    
-    leftSizeHeight = treeHeight(&(*node)->left);
-    rightSizeHeight = treeHeight(&(*node)->right);
-    tallerSize = (leftSizeHeight > rightSizeHeight) ? leftSizeHeight : rightSizeHeight;
-    
-    return 1 + tallerSize;
-}
-
-Aluno menorNota(nodePointer* node) {
+// Busca o aluno que possui a menor nota na árvore
+Alumn lowestGrade(nodePointer* node) {
     if ((*node)->left != NULL)
-        return menorNota(&(*node)->left);
-    return (*node)->aluno;
+        return lowestGrade(&(*node)->left);
+    return (*node)->alumn;
 }
 
-Aluno maiorNota(nodePointer* node) {
+// Busca o aluno que possui a maior nota na árvore
+Alumn highestGrade(nodePointer* node) {
     if ((*node)->right != NULL)
-        return maiorNota(&(*node)->right);
-    return (*node)->aluno;
+        return highestGrade(&(*node)->right);
+    return (*node)->alumn;
 }
 
-int alunosComMedia(nodePointer* node) {
+// Conta a quantidade de alunos/nós que a árvore possui que tem nota >= 12
+int averageStudents(nodePointer* node) {
     if (*node == NULL) return 0;
-    else if ((*node)->aluno.nota >= 12.0)
-        return 1 + alunosComMedia(&(*node)->left) + alunosComMedia(&(*node)->right);
+    else if ((*node)->alumn.grade >= 12.0)
+        return 1 + averageStudents(&(*node)->left) + averageStudents(&(*node)->right);
     else
-        return alunosComMedia(&(*node)->right);
+        return averageStudents(&(*node)->right);
 }
